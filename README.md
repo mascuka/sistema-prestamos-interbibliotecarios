@@ -4,6 +4,10 @@ Trabajo práctico integrador de la materia **Desarrollo de Aplicaciones con Obje
 
 Reemplaza la gestión manual de una **red de bibliotecas** organizada en sedes. Además de socios, catálogo, préstamos, devoluciones y disponibilidad, resuelve el rasgo distintivo del dominio: el **préstamo interbibliotecario**, en el que un socio pide un ejemplar que está en otra sede y el sistema gestiona su traslado con **remitos** y trazabilidad completa. Consigna en [`enunciado.md`](enunciado.md) y análisis en [`analisis-enunciado.md`](analisis-enunciado.md).
 
+> **Demo en vivo:** https://sistema-prestamos-interbibliotecari.vercel.app
+>
+> Usuarios `admin` (administrador), `bibliotecario.cen` (bibliotecario) o `socio.demo` (socio), todos con la contraseña `Biblioteca2026`. Los datos son inventados y cualquiera puede modificarlos; la primera visita después de un rato sin uso puede tardar unos segundos.
+
 ## Funcionalidades por rol
 
 | Rol | Qué hace |

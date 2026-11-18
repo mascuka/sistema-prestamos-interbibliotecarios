@@ -65,3 +65,7 @@ select = ["E", "F", "I", "UP", "B"]
 
 [tool.ruff.lint.flake8-bugbear]
 extend-immutable-calls = ["fastapi.Depends", "fastapi.Query", "fastapi.Path", "fastapi.Body"]
+
+[tool.vercel.scripts]
+# Build de la demo en Vercel: migraciones y datos de demostración (ver scripts/preparar_demo.py).
+build = "python scripts/preparar_demo.py"
