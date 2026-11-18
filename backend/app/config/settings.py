@@ -3,7 +3,7 @@
 from functools import lru_cache
 from pathlib import Path
 
-from pydantic import Field
+from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 RAIZ_REPO = Path(__file__).resolve().parents[3]
@@ -28,6 +28,16 @@ class Settings(BaseSettings):
     seed_password: str | None = None
     # Nivel del registro de la aplicación (DEBUG, INFO, WARNING…).
     log_level: str = "INFO"
+
+    @field_validator("database_url")
+    @classmethod
+    def con_driver_psycopg(cls, valor: str) -> str:
+        """Acepta la URL tal como la entregan los proveedores (``postgres://`` o
+        ``postgresql://``) y le agrega el driver psycopg que usa SQLAlchemy."""
+        for prefijo in ("postgres://", "postgresql://"):
+            if valor.startswith(prefijo):
+                return "postgresql+psycopg://" + valor.removeprefix(prefijo)
+        return valor
 
     @property
     def origenes_cors(self) -> list[str]:
