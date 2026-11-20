@@ -22,7 +22,7 @@ function inicioDelAdmin() {
 describe('AccesoDemo', () => {
   afterEach(() => vi.unstubAllEnvs());
 
-  it('sin las variables del deploy no aparece ni en el inicio ni en el login', async () => {
+  it('sin las variables del deploy el login no lo muestra', async () => {
     responder('get', '/publico/inicio', INICIO);
     renderizarApp('/login');
 
@@ -30,7 +30,7 @@ describe('AccesoDemo', () => {
     expect(screen.queryByRole('button', { name: /Entrar como visitante/ })).toBeNull();
   });
 
-  it('en el inicio público muestra el usuario y la contraseña y entra con un clic', async () => {
+  it('en el login muestra el usuario y la contraseña y entra con un clic', async () => {
     conAccesoDemo();
     responder('get', '/publico/inicio', INICIO);
     const logins = registrar('post', '/auth/login', {
@@ -40,7 +40,7 @@ describe('AccesoDemo', () => {
       usuario: VISITANTE,
     });
     inicioDelAdmin();
-    const { container } = renderizarApp('/');
+    const { container } = renderizarApp('/login');
 
     const cartel = await screen.findByRole('region', { name: '¿Querés recorrer el sistema?' });
     expect(within(cartel).getByText('visitante')).toBeInTheDocument();
@@ -54,7 +54,7 @@ describe('AccesoDemo', () => {
     expect(screen.getByText('Modo demostración')).toBeInTheDocument();
   });
 
-  it('en el login avisa si el usuario de demostración no existe en el deploy', async () => {
+  it('avisa si el usuario de demostración no existe en el deploy', async () => {
     conAccesoDemo();
     responder('get', '/publico/inicio', INICIO);
     responder('post', '/auth/login', () =>

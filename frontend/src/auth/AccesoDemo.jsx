@@ -6,8 +6,8 @@ import { useSesion } from './SesionContext.jsx';
 import estilos from './AccesoDemo.module.css';
 
 /**
- * Cartel con el usuario y la contraseña de demostración y un botón que entra con un clic. Al
- * iniciar la sesión, la pantalla que lo contiene (inicio público o login) pasa sola al sistema.
+ * Cartel del login con el usuario y la contraseña de demostración y un botón que entra con un
+ * clic. Al iniciar la sesión, el login pasa solo al sistema.
  * No se muestra si el deploy no define el acceso (ver `utils/demo.js`).
  */
 export default function AccesoDemo({ className = '' }) {

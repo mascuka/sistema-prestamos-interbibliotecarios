@@ -8,7 +8,7 @@ nada.
 La contraseña de los usuarios de demostración es pública a propósito: es una demo para mostrar
 el sistema, con datos inventados. Se puede cambiar con la variable ``SEED_PASSWORD``.
 
-También crea el usuario ``visitante``, el que muestran el inicio y el login (los mismos valores
+También crea el usuario ``visitante``, el que muestra el login (los mismos valores
 están en ``frontend/.env.production``). Para que nadie pueda modificar los datos, el proyecto de
 Vercel define ``USUARIOS_SOLO_LECTURA=*``: todos los usuarios ven, ninguno modifica.
 """

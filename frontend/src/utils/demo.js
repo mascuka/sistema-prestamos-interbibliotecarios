@@ -1,6 +1,6 @@
 /**
  * Acceso de demostración para quien visita el proyecto publicado. Solo existe si el deploy define
- * `VITE_DEMO_USUARIO` y `VITE_DEMO_CLAVE`; sin esas variables no se muestra nada. Ese usuario
+ * `VITE_DEMO_USUARIO` y `VITE_DEMO_CLAVE`; sin esas variables el login no lo muestra. Ese usuario
  * tiene que figurar en `USUARIOS_SOLO_LECTURA` del backend, que le rechaza cualquier cambio.
  *
  * @returns {{usuario: string, clave: string} | null}

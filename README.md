@@ -6,7 +6,7 @@ Reemplaza la gestión manual de una **red de bibliotecas** organizada en sedes. 
 
 > **Demo en vivo:** https://sistema-prestamos-interbibliotecari.vercel.app
 >
-> Entrá con el usuario `visitante` y la contraseña `visitante1`, o con el botón «Entrar como visitante» del inicio. Para ver el sistema desde otros roles: `bibliotecario.cen` (bibliotecario) o `socio.demo` (socio), con la contraseña `Biblioteca2026`. La demo es de **solo lectura**: se puede recorrer todo, pero no se guarda ningún cambio. Los datos son inventados; la primera visita después de un rato sin uso puede tardar unos segundos.
+> Entrá con el usuario `visitante` y la contraseña `visitante1`, o con el botón «Entrar como visitante» del login. Para ver el sistema desde otros roles: `bibliotecario.cen` (bibliotecario) o `socio.demo` (socio), con la contraseña `Biblioteca2026`. La demo es de **solo lectura**: se puede recorrer todo, pero no se guarda ningún cambio. Los datos son inventados; la primera visita después de un rato sin uso puede tardar unos segundos.
 
 ## Funcionalidades por rol
 
@@ -88,7 +88,7 @@ Para publicar el sistema y que cualquiera lo recorra sin poder modificar nada:
 
 1. Crear desde **Usuarios** un usuario con rol Administrador (por ejemplo, `visitante`) y una contraseña propia, distinta de la de los demás usuarios: se va a mostrar en la web.
 2. En el backend, `USUARIOS_SOLO_LECTURA=visitante`. Ese usuario ve todo, pero la API le rechaza cualquier alta, modificación o baja (`403 SOLO_LECTURA`), también si se la llama directamente.
-3. Al compilar el frontend, `VITE_DEMO_USUARIO=visitante` y `VITE_DEMO_CLAVE=<su contraseña>`. El inicio público y el login muestran el acceso con un botón «Entrar como visitante», y dentro del sistema aparece el aviso «Modo demostración».
+3. Al compilar el frontend, `VITE_DEMO_USUARIO=visitante` y `VITE_DEMO_CLAVE=<su contraseña>`. El login muestra el acceso con un botón «Entrar como visitante», y dentro del sistema aparece el aviso «Modo demostración».
 
 Sin esas variables no cambia nada.
 
