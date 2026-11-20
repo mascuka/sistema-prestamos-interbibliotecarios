@@ -7,6 +7,10 @@ nada.
 
 La contraseña de los usuarios de demostración es pública a propósito: es una demo para mostrar
 el sistema, con datos inventados. Se puede cambiar con la variable ``SEED_PASSWORD``.
+
+También crea el usuario ``visitante``, el que muestran el inicio y el login (los mismos valores
+están en ``frontend/.env.production``). Para que nadie pueda modificar los datos, el proyecto de
+Vercel define ``USUARIOS_SOLO_LECTURA=*``: todos los usuarios ven, ninguno modifica.
 """
 
 import os
@@ -14,6 +18,8 @@ import subprocess
 import sys
 
 CLAVE_DEMO = "Biblioteca2026"
+USUARIO_VISITANTE = "visitante"
+CLAVE_VISITANTE = "visitante1"
 
 
 def main() -> int:
@@ -28,6 +34,12 @@ def main() -> int:
         "SEED_PASSWORD": os.environ.get("SEED_PASSWORD") or CLAVE_DEMO,
     }
     subprocess.run([sys.executable, "-m", "app.db.seed"], env=entorno, check=True)
+    entorno_visitante = {
+        **os.environ,
+        "VITE_DEMO_USUARIO": os.environ.get("VITE_DEMO_USUARIO") or USUARIO_VISITANTE,
+        "VITE_DEMO_CLAVE": os.environ.get("VITE_DEMO_CLAVE") or CLAVE_VISITANTE,
+    }
+    subprocess.run([sys.executable, "-m", "app.db.visitante"], env=entorno_visitante, check=True)
     return 0
 
 

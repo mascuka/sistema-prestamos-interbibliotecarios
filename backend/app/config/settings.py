@@ -28,6 +28,10 @@ class Settings(BaseSettings):
     seed_password: str | None = None
     # Nivel del registro de la aplicación (DEBUG, INFO, WARNING…).
     log_level: str = "INFO"
+    # Usuarios de solo lectura (demostración pública), separados por coma: ven todo lo que su rol
+    # permite, pero la API les rechaza cualquier cambio; ``*`` los incluye a todos. Vacío por
+    # defecto.
+    usuarios_solo_lectura: str = ""
 
     @field_validator("database_url")
     @classmethod
@@ -43,6 +47,11 @@ class Settings(BaseSettings):
     def origenes_cors(self) -> list[str]:
         """Orígenes permitidos para CORS, separados por coma en la variable."""
         return [o.strip() for o in self.cors_origins.split(",") if o.strip()]
+
+    def es_solo_lectura(self, username: str) -> bool:
+        """Indica si el usuario figura en ``USUARIOS_SOLO_LECTURA`` (sin distinguir mayúsculas)."""
+        nombres = {u.strip().lower() for u in self.usuarios_solo_lectura.split(",") if u.strip()}
+        return "*" in nombres or username.strip().lower() in nombres
 
     def validar_clave_secreta(self) -> None:
         """Rechaza una clave de firma insegura (la de ejemplo o demasiado corta).

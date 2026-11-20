@@ -6,7 +6,7 @@ Reemplaza la gestión manual de una **red de bibliotecas** organizada en sedes. 
 
 > **Demo en vivo:** https://sistema-prestamos-interbibliotecari.vercel.app
 >
-> Usuarios `admin` (administrador), `bibliotecario.cen` (bibliotecario) o `socio.demo` (socio), todos con la contraseña `Biblioteca2026`. Los datos son inventados y cualquiera puede modificarlos; la primera visita después de un rato sin uso puede tardar unos segundos.
+> Entrá con el usuario `visitante` y la contraseña `visitante1`, o con el botón «Entrar como visitante» del inicio. Para ver el sistema desde otros roles: `bibliotecario.cen` (bibliotecario) o `socio.demo` (socio), con la contraseña `Biblioteca2026`. La demo es de **solo lectura**: se puede recorrer todo, pero no se guarda ningún cambio. Los datos son inventados; la primera visita después de un rato sin uso puede tardar unos segundos.
 
 ## Funcionalidades por rol
 
@@ -81,6 +81,16 @@ npm ci && npm run dev                   # http://localhost:5173
 | Socio | `socio.demo` (Carla), `martin.rios`, `camila.ferreyra`, `tomas.vera`; `diego.luna` y `ana.quiroga` están dados de baja y pueden pedir la reactivación |
 
 El seed carga 90 días de historia: hay préstamos, remitos, reservas y multas en todos sus estados, para recorrer cada pantalla y los reportes.
+
+### Demostración pública (solo lectura)
+
+Para publicar el sistema y que cualquiera lo recorra sin poder modificar nada:
+
+1. Crear desde **Usuarios** un usuario con rol Administrador (por ejemplo, `visitante`) y una contraseña propia, distinta de la de los demás usuarios: se va a mostrar en la web.
+2. En el backend, `USUARIOS_SOLO_LECTURA=visitante`. Ese usuario ve todo, pero la API le rechaza cualquier alta, modificación o baja (`403 SOLO_LECTURA`), también si se la llama directamente.
+3. Al compilar el frontend, `VITE_DEMO_USUARIO=visitante` y `VITE_DEMO_CLAVE=<su contraseña>`. El inicio público y el login muestran el acceso con un botón «Entrar como visitante», y dentro del sistema aparece el aviso «Modo demostración».
+
+Sin esas variables no cambia nada.
 
 ## Pruebas y calidad
 
